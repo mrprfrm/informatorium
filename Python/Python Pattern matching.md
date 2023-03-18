@@ -128,3 +128,48 @@ match response:
 
 > В данном случае обработан будет первый кейс, до второго интерпретатор доберётся только в случае если `status` в `response` отсутствует.
 
+## Class Patterns
+
+При работе с пользовательскими типами `case` ожидает получить на вход конструктор объекта с определёнными аргументами, которые и будут учитываться при расчёте попадания объекта из `match` в тот или иной кейс.
+
+> Следует заметить, что перечень аргументов, что могут обрабатываться в `case` нужно определять явно, при определении объекта
+
+```Python
+class Point(object):
+    __match_args__ = ["x", "y", "z"]
+
+	def __init__(self, x, y , z):
+		self.x = x
+		self.y = y
+		self.z = z
+
+point = Point(1, 1, 1)
+
+match point:
+	case Point(0, 0, 1):
+		print("The point is on the line")
+	case Point(0, 1, 1):
+		print("The point is on the flat")
+	case Point(1, 1, 1):
+		print("The point is in the space")
+```
+
+> Если объект был определён как `dataclass` определение `__match_args__` не требуется
+
+```Python
+@dataclass
+class Point(object):
+	x: int
+	y: int
+	z: int
+
+point = Point(1, 1, 1)
+
+match point:
+	case Point(0, 0, 1):
+		print("The point is on the line")
+	case Point(0, 1, 1):
+		print("The point is on the flat")
+	case Point(1, 1, 1):
+		print("The point is in the space")
+```
