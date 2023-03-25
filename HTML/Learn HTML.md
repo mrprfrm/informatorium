@@ -5,6 +5,6 @@ tags:
  - cource
 ---
 
-**Связанные ссылки**
+## Список источников
 
 - [Ссылка на курс web.dev](https://web.dev/learn/html/)
