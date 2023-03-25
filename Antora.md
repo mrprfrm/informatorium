@@ -4,6 +4,6 @@ tags:
  - techwriting
 ---
 
-## Связанные ссылки
+## Список источников
 
 1. https://antora.org/

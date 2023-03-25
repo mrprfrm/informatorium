@@ -3,6 +3,6 @@ tags:
  - lsp
 ---
 
-## Связанные ссылки
+## Список источников
 
 1. [Language server protocol](https://microsoft.github.io/language-server-protocol/)
