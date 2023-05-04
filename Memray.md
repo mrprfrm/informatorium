@@ -4,7 +4,7 @@ tags:
  - profiling
 ---
 
-## Связанные ссылки
+## Список источников
 
 1. https://github.com/bloomberg/memray
 
