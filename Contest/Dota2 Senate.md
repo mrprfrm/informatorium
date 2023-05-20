@@ -1,6 +1,7 @@
 ---
 tags:
  - contest
+ - medium
  - stack
 ---
 
@@ -39,20 +40,19 @@ tags:
 ```python
 from collections import deque
 
-class Solution:
-    def predictPartyVictory(self, senate: str) -> str:
-        senate, senator = deque(senate), None
+def predict_party_victory(senate: str) -> str:
+	senate, senator = deque(senate), None
 
-        if "R" not in senate or "D" not in senate:
-            senator = senate[0]
+	if "R" not in senate or "D" not in senate:
+		senator = senate[0]
 
-        while senate and "R" in senate and "D" in senate:
-            senator = senate.popleft()
-            oposit = "R" if senator == "D" else "D"
-            senate.remove(oposit)
-            senate.append(senator)
-        
-        return "Radiant" if senator == "R" else "Dire"
+	while senate and "R" in senate and "D" in senate:
+		senator = senate.popleft()
+		oposit = "R" if senator == "D" else "D"
+		senate.remove(oposit)
+		senate.append(senator)
+	
+	return "Radiant" if senator == "R" else "Dire"
 ```
 
 ## Оптимизация
@@ -68,26 +68,25 @@ class Solution:
 ```python
 from collections import deque
 
-class Solution:
-    def get_name(self, code):
-        return "Radiant" if code == "R" else "Dire"
+def get_name(code):
+	return "Radiant" if code == "R" else "Dire"
         
-    def predictPartyVictory(self, senate: str) -> str:
-        if "R" not in senate or "D" not in senate:
-            return self.get_name(senate[0])
-            
-        senate, last_senator = deque(senate), None
-        skip_map = {"R": 0, "D": 0}
-        while senate and "R" in senate and "D" in senate:
-            senator = senate.popleft()
-            if skip_map[senator] > 0:
-                skip_map[senator] -= 1
-            else:
-                oposit = "R" if senator == "D" else "D"
-                skip_map[oposit] += 1
-                senate.append(senator)
-                
-        return self.get_name(senate[0])
+def predict_party_victory(senate: str) -> str:
+	if "R" not in senate or "D" not in senate:
+		return get_name(senate[0])
+		
+	senate, last_senator = deque(senate), None
+	skip_map = {"R": 0, "D": 0}
+	while senate and "R" in senate and "D" in senate:
+		senator = senate.popleft()
+		if skip_map[senator] > 0:
+			skip_map[senator] -= 1
+		else:
+			oposit = "R" if senator == "D" else "D"
+			skip_map[oposit] += 1
+			senate.append(senator)
+			
+	return get_name(senate[0])
 ```
 
 Следует заметить, что в процессе решения мы обновляем только первый и последний элемент очереди и подобная операция вполне осуществима и с использованием строк.
@@ -95,23 +94,26 @@ class Solution:
 Вместо метода `popleft` мы создадим срез строки от второго элемента до конца, что позволит нам отказаться от преобразования исходной строки в очередь и как следствие сильно понизить затраты на выполнение функции по времени.
 
 ```python
-class Solution:
-    def get_name(self, code):
-        return "Radiant" if code == "R" else "Dire"
-        
-    def predictPartyVictory(self, senate: str) -> str:
-        if "R" not in senate or "D" not in senate:
-            return self.get_name(senate[0])
-            
-        skip_map = {"R": 0, "D": 0}
-        while senate and "R" in senate and "D" in senate:
-            senator, senate = senate[0], senate[1:]
-            if skip_map[senator] > 0:
-                skip_map[senator] -= 1
-            else:
-                oposit = "R" if senator == "D" else "D"
-                skip_map[oposit] += 1
-                senate += senator
-                
-        return self.get_name(senate[0])
+def get_name(code):
+	return "Radiant" if code == "R" else "Dire"
+	
+def predict_party_victory(senate: str) -> str:
+	if "R" not in senate or "D" not in senate:
+		return get_name(senate[0])
+		
+	skip_map = {"R": 0, "D": 0}
+	while senate and "R" in senate and "D" in senate:
+		senator, senate = senate[0], senate[1:]
+		if skip_map[senator] > 0:
+			skip_map[senator] -= 1
+		else:
+			oposit = "R" if senator == "D" else "D"
+			skip_map[oposit] += 1
+			senate += senator
+			
+	return get_name(senate[0])
 ```
+
+## Список источников
+
+- [649. Dota2 Senate](https://leetcode.com/problems/dota2-senate/)

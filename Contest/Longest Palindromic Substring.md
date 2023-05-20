@@ -1,6 +1,7 @@
 ---
 tags:
  - contest
+ - medium
  - dp
  - palindrome
 ---
@@ -12,10 +13,10 @@ tags:
 > Палиндром — это строка, где прядок букв справа на лево и с лева на право одинаковый.
 
 ```Python
-"nnann" # самый длинный палиндром nnann длинной 5 букв
-"pkaak" # самый длинный палиндром kaak длинной 4 буквы
-"kadad" # самый длинный палиндром ada длинной 3 буквы
-"acaba" # самый длинный палиндром aca длинной 3 буквы
+"nnann" # Самый длинный палиндром nnann длинной 5 букв
+"pkaak" # Самый длинный палиндром kaak длинной 4 буквы
+"kadad" # Самый длинный палиндром ada длинной 3 буквы
+"acaba" # Самый длинный палиндром aca длинной 3 буквы
 ```
 
 ## Решение
@@ -91,3 +92,7 @@ def longest_palindrome(s):
 	
 	return result or s[0]
 ```
+
+## Список источников
+
+- [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)

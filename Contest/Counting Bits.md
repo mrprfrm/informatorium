@@ -1,3 +1,10 @@
+---
+tags:
+ - contest
+ - easy
+ - dp
+---
+
 Дано число `n`, необходимо определить количество единиц в двоичном представлении каждого числа от `0` до `n` включительно.
 
 ```Python
@@ -21,7 +28,7 @@ def get_bin(n):
 		n, r = divmod(n, 2)
 		yield(r)
 
-def count_иits(self, n):
+def count_bits(self, n):
 	dp = [0, 1]
 	for i in range(2, n + 1):
 		count = sum(get_bin(i))
@@ -65,3 +72,7 @@ def count_bits(self, n):
 			dp[i] = dp[i // 2] + 1
 	return dp
 ```
+
+## Список источников
+
+- [338. Counting Bits](https://leetcode.com/problems/counting-bits/)
