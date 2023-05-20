@@ -1,6 +1,7 @@
 ---
 tags:
  - contest
+ - medium
  - dp
  - palindrome
 ---
@@ -14,10 +15,10 @@ tags:
 > Палиндром — это строка, где порядок букв справа на лево и с лева на право одинаковый.
 
 ```Python
-"bbbab" # самый длинный палиндром bbbb длинной 4 буквы
-"aabaa" # самый длинный палиндром aabaa длинной 5 букв
-"abab"  # самый длинный палиндром bab длинной 3 буквы
-"abbab" # самый длинный палиндром abba длинной 4 буквы
+"bbbab" # Самый длинный палиндром bbbb длинной 4 буквы
+"aabaa" # Самый длинный палиндром aabaa длинной 5 букв
+"abab"  # Самый длинный палиндром bab длинной 3 буквы
+"abbab" # Самый длинный палиндром abba длинной 4 буквы
 ```
 
 ## Решение
@@ -54,3 +55,7 @@ def longest_palindrome_subseq(self, s: str) -> int:
         prev = current
     return prev[-1]
 ```
+
+## Список источников
+
+- [516. Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/)

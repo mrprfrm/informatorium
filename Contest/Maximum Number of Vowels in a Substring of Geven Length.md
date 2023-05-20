@@ -1,12 +1,19 @@
+---
+tags:
+ - contest
+ - medium
+ - stack
+---
+
 ![[vowels_counter.png]]
 
 Дана строка `s` и целое число `k`, необходимо вернуть максимальное количество гласных в любой подстроке `s` длинной `k`.
 
 ```Python
-"abciiidef", 3 # подстрока "iii" содержит 3 гласные буквы
-"aeiou", 2     # подстрока "ae" содержит 2 гласные буквы
-"queens", 3.   # подстрока "uee" содержит 3 гласные буквы
-"anno", 4.     # подстрока "anno" содержит 2 гласные буквы
+"abciiidef", 3 # Подстрока "iii" содержит 3 гласные буквы
+"aeiou", 2     # Подстрока "ae" содержит 2 гласные буквы
+"queens", 3.   # Подстрока "uee" содержит 3 гласные буквы
+"anno", 4.     # Подстрока "anno" содержит 2 гласные буквы
 ```
 
 ## Решение
@@ -130,3 +137,7 @@ def max_vowels(self, s, k):
             
         return max_count
 ```
+
+## Список источников
+
+- [1456. Maximum Number of Vowels in a Substring of Given Length](https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/)
