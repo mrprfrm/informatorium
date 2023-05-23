@@ -1,3 +1,10 @@
+---
+tags:
+ - python
+ - caching
+ - standardlibrary
+---
+
 ## @functools.cache
 
 Простая и легковесная кэш-функция, также известная как мемоизация.
