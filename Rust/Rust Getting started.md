@@ -50,7 +50,7 @@ cargo --version
 
 - VS Code;
 - Sublime Text;
-- [[Rust LSP | Nvim]];
+- [[Rust LSP |Nvim]];
 - И многие другие.
 
 ### Создание нового проекта
@@ -71,8 +71,6 @@ cargo new <name-of-the-project>
 - `src/main.rs`  — код приложения, создаётся по умолчянию.
 
 > В поддиректории `src` по аналогии с `React.js` или `Vue.js` хранятся исходники, `main.rs` — это просто точка входа в проект.
-> 
-
 
 ### Per-project изоляция окружения
 
