@@ -7,7 +7,7 @@ tags:
 
 ## lsp-config
 
-В конфигурации серверов [[lsp-config | lsp-config]] имеется несколько опций для работы с [[Rust Getting started | Rust]]
+В конфигурации серверов [[lsp-config | lsp-config]] имеется несколько опций для работы с [[Rust]]
 
 ### rust-analyzer
 
