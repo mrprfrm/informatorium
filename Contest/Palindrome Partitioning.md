@@ -14,13 +14,13 @@ tags:
 from functools import cache
 
 @cache
-def partition(self, s: str) -> List[List[str]]:
+def partition(s: str) -> List[List[str]]:
 	if not s:
 		return [[]]
 	result, n = [], len(s)
 	for i in range(1, n + 1):
 		if s[:i] == s[:i][::-1]:
-			for sub in self.partition(s[i:]):
+			for sub in partition(s[i:]):
 				result.append([s[:i]] + sub)
 	return result
 ```

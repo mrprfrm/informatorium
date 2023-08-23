@@ -25,7 +25,7 @@ tags:
 В случае если не удалось определить строку, потенциально содержащую искомое число или само число не было найдено в такой строке — возвращаем `false` в противном случае возвращаем `true` сразу после нахождения числа.
 
 ```Python
-def search_matrix(self, matrix: List[List[int]], target: int) -> bool:
+def search_matrix(matrix: List[List[int]], target: int) -> bool:
 	row = []
 	start, end = 0, len(matrix)
 	while start < end:
