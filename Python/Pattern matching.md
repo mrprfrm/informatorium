@@ -4,6 +4,8 @@ tags:
  - syntax
 ---
 
+[[Python]]
+
 ## TODO
 
 - [ ] Literal pattern check
