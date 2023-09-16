@@ -1,5 +1,0 @@
----
-tags:
-  - Python
-  - Language
----

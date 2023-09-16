@@ -1,13 +1,16 @@
 ---
 tags:
- - python
- - caching
- - standardlibrary
+  - python
+  - caching
+  - functools
+related:
+  - "[[Стандартная библиотека|Standard library]]"
+last updated: 2023-09-16
+version: 0.0.2
 ---
-
 ## @functools.cache
 
-Простая и легковесная кэш-функция [[Python]], также известная как мемоизация.
+Простая и легковесная кэш-функция Python, также известная как мемоизация.
 
 Оборачивает исходную функцию, создавая тонкую обёртку вокруг `dictionary lookup` для аргументов функции для последующего доступа к соответствующим результатам выполнения функции.
 
@@ -30,5 +33,5 @@ def factorial(n):
 
 ## Список источников
 
-- [Higher-order functions and operations on callable objects](https://docs.python.org/3/library/functools.html)
-- [Memoization](https://en.wikipedia.org/wiki/Memoization)
+- [functools — Higher-order functions and operations on callable objects (python.org)](https://docs.python.org/3/library/functools.html)
+- [Memoization (wikipedia.org)](https://en.wikipedia.org/wiki/Memoization)
