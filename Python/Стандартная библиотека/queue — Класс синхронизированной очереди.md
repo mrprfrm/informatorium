@@ -1,13 +1,16 @@
 ---
 aliases:
   - queue
+author:
+  - Anton Petrov
+last updated: 2023-09-16
+related:
+  - "[[Стандартная библиотека|Standard library]]"
+Spell checked: true
 tags:
   - python
   - collections
   - queue
-related:
-  - "[[Стандартная библиотека|Standard library]]"
-last updated: 2023-09-16
 version: 0.1.1
 ---
 Модуль `queue` Python реализует очереди со множеством производителей и потребителей данных. Он особенно полезен в многопоточном программировании, когда информацию необходимо безопасно делить между несколькими потоками. Класс `Queue` в этом модуле реализует все необходимые семантики блокировки.

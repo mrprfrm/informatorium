@@ -1,11 +1,15 @@
 ---
+author:
+  - Anton Petrov
+last updated: 2023-09-17
+related:
+  - "[[Язык программирования Python|Python]]"
+Spell checked: 
 tags:
- - python
- - syntax
+  - python
+  - syntax
+version: 0.0.1
 ---
-
-[[Python]]
-
 ## TODO
 
 - [ ] Literal pattern check

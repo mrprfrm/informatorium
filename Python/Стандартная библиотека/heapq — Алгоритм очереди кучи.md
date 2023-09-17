@@ -1,13 +1,16 @@
 ---
 aliases:
   - heapq
+author:
+  - Anton Petrov
+last updated: 2023-09-16
+related:
+  - "[[Стандартная библиотека|Standard library]]"
+Spell checked: true
 tags:
   - python
   - heap
   - collections
-related:
-  - "[[Стандартная библиотека|Standard library]]"
-last updated: 2023-09-16
 version: 0.1.1
 ---
 Модуль `heapq` предоставляет реализацию алгоритма очереди кучи (Heap queue algorithm), также известный как алгоритм очереди с приоритетом.

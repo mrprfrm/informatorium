@@ -1,11 +1,16 @@
 ---
+aliases:
+  - functools
+author:
+  - Anton Petrov
+last updated: 2023-09-16
+related:
+  - "[[Стандартная библиотека|Standard library]]"
+Spell checked: true
 tags:
   - python
   - caching
   - functools
-related:
-  - "[[Стандартная библиотека|Standard library]]"
-last updated: 2023-09-16
 version: 0.0.2
 ---
 ## @functools.cache
