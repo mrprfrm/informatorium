@@ -6,11 +6,11 @@ author:
 last updated: 2023-09-19
 related:
   - "[[Язык программирования Python|Python]]"
-Spell checked: 
+Spell checked: true
 tags:
   - python
   - interpreter
-version: 0.0.2
+version: 0.0.3
 ---
 ## Запуск интерпретатора
 
