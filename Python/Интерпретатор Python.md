@@ -3,7 +3,7 @@ aliases:
   - Python interpreter
 author:
   - Anton Petrov
-last updated: 2023-09-19
+last updated: 2023-09-22
 related:
   - "[[Язык программирования Python|Python]]"
 Spell checked: true
