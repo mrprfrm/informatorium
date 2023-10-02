@@ -27,4 +27,4 @@ Python - это простой и мощный язык программиров
 
 - [The Python Tutorial (python.org)](https://docs.python.org/3/tutorial/index.html)
 - [Whetting Your Appetite (python.org)](https://docs.python.org/3/tutorial/appetite.html)
-- [Why does cryptography require Rust?](https://cryptography.io/en/latest/faq/#why-does-cryptography-require-rust)
+- [Why does cryptography require Rust? (cryptography.io)](https://cryptography.io/en/latest/faq/#why-does-cryptography-require-rust)
