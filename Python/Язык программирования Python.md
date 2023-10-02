@@ -26,5 +26,5 @@ Python - это простой и мощный язык программиров
 ## Список источников
 
 - [The Python Tutorial (python.org)](https://docs.python.org/3/tutorial/index.html)
-- [1. Whetting Your Appetite (python.org)](https://docs.python.org/3/tutorial/appetite.html)
+- [Whetting Your Appetite (python.org)](https://docs.python.org/3/tutorial/appetite.html)
 - [Why does cryptography require Rust?](https://cryptography.io/en/latest/faq/#why-does-cryptography-require-rust)
