@@ -3,11 +3,11 @@ author:
   - Anton Petrov
 last updated: 2023-09-17
 related:
-  - "[[Язык программирования Python|Python]]"
-Spell checked: 
+  - "[[Руководство|The Python Tutorial]]"
+spell checked: 
 tags:
   - python
-  - syntax
+  - controlflow
 version: 0.0.1
 ---
 ## TODO
