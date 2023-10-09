@@ -11,6 +11,7 @@ tags:
   - python
   - caching
   - functools
+  - standardlibrary
 version: 0.0.2
 ---
 ## @functools.cache

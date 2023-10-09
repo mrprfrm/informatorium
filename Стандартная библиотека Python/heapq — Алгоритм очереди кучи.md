@@ -11,6 +11,7 @@ tags:
   - python
   - heap
   - collections
+  - standardlibrary
 version: 0.1.1
 ---
 Модуль `heapq` предоставляет реализацию алгоритма очереди кучи (Heap queue algorithm), также известный как алгоритм очереди с приоритетом.

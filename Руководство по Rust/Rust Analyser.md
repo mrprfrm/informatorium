@@ -4,7 +4,6 @@ tags:
  - Nvim
  - LSP
 ---
-
 ## lsp-config
 
 В конфигурации серверов [[lsp-config | lsp-config]] имеется несколько опций для работы с [[Rust]]

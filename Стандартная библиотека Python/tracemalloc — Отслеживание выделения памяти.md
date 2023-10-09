@@ -1,19 +1,18 @@
 ---
 aliases:
-  - codecs
+  - tracemalloc
 author:
   - Anton Petrov
-last updated: 2023-09-22
+last updated: 2023-09-16
 related:
   - "[[Стандартная библиотека|Standard library]]"
 Spell checked: 
 tags:
   - python
-  - codecs
-  - encoding
-  - decoding
+  - profiling
+  - standardlibrary
 version: 0.0.1
 ---
 ## Список источников
 
-- [codecs — Codec registry and base classes](https://docs.python.org/3/library/codecs.html#module-codecs)
+- [tracemalloc — Trace memory allocations (python.org)](https://docs.python.org/3/library/tracemalloc.html)

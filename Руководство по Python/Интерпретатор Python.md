@@ -5,8 +5,8 @@ author:
   - Anton Petrov
 last updated: 2023-09-22
 related:
-  - "[[Язык программирования Python|Python]]"
-Spell checked: true
+  - "[[Руководство|The Python Tutorial]]"
+spell checked: true
 tags:
   - python
   - interpreter
