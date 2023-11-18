@@ -16,7 +16,7 @@ version: 0.1.0
 
 Интерпретатор Python обычно устанавливается  в директорию `/usr/local/bin/python3.11` на тех машинах, где он доступен; Поместив `/usr/local/bin` в search PATH вашей оболочки Unix, вы сможете запустить его, введя команду:
 
-```Zsh
+```zsh
 $ python3.11
 ```
 
@@ -46,7 +46,7 @@ $ python3.11
 
 Когда команды вводятся непосредственно через `tty`, говорят, что интерпретатор находится в интерактивном режиме. В этом режиме он запрашивает следующую команду в основной промпт, обычно обозначенный тремя знаками "больше-меньше": `>>>`. Для ввода дополняющих выражений (continuation lines), интерпретатор предлагает вторичный промпт, который, как правило, обозначен тремя точками: `...`. После запуска интерпретатора в интерактивном режиме в терминале отобразится информация о его версии, а также небольшое пояснение о доступных командах, а затем появится первичный промпт.
 
-```Zsh
+```zsh
 $ python3
 Python 3.11.4 (main, Jul 25 2023, 17:07:07) [Clang 14.0.3 (clang-1403.0.22.14.1)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
@@ -55,7 +55,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 Упомянутые дополняющие выражения (continuation lines) применяются для ввода вложенных, многострочных конструкций. Например, для описания циклов или условий.
 
-```Zsh
+```zsh
 >>> the_world_is_flat = True
 >>> if the_world_is_flat:
 ...     print("Be careful not to fall off!")
@@ -73,7 +73,7 @@ Be careful not to fall off!
 
 Чтобы переопределить кодировку по умолчанию, вы можете добавить специальный комментарий в первой строке файла:
 
-```Python
+```python
 # -*- coding: encoding -*-
 ```
 
@@ -81,17 +81,17 @@ Be careful not to fall off!
 
 Например, объявить, что в файле будет использоваться кодировка Windows-1252, добавьте следующий комментарий:
 
-```Python
+```python
 # -*- coding: cp1252 -*-
 ```
 
 Существует также исключение, когда первой строкой в файле указывается [строка UNIX «shebang»](https://docs.python.org/3/tutorial/appendix.html#tut-scripts). В этом случае кодировка указывается второй строкой.
 
-```Python
+```python
 #!/usr/bin/env python3
 # -*- coding: cp1252 -*-
 ```
 
 ## Список источников
 
-- [Using the Python Interpreter](https://docs.python.org/3/tutorial/interpreter.html)
+- [Using the Python Interpreter (python.org)](https://docs.python.org/3/tutorial/interpreter.html)
