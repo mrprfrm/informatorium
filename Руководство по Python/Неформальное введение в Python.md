@@ -490,6 +490,7 @@ TypeError: 'str' object does not support item assignment
 ```python
 >>> a, b, *c = 1, 2, 3, 4
 print(a, b, c)
+1 2 [3, 4]
 ```
 
 ### Цикл while
