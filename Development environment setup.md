@@ -1,15 +1,13 @@
 ---
 authors:
   - Anton Petrov
-last updated: 2023-10-27
-spell checked: true
+status: Draft
 tags:
   - python
   - node
   - neovim
   - zsh
   - git
-version: 0.1.0
 ---
 ## Homebrew setup
 
@@ -51,6 +49,7 @@ Then let's install plugins we going to use with zsh:
 ```zsh
 $ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 $ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+$ git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 ```
 
 Now, when OhMyZsh is installed, let's add couple plugins and set the theme of the shell. First, we need to open the `~/.zshrc` config file with any preferable editor, and add the strings there:
@@ -59,7 +58,7 @@ Now, when OhMyZsh is installed, let's add couple plugins and set the theme of th
 # --snip--
 ZSH_THEME="eastwood"
 # --snip--
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions direnv)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-vi-mode direnv)
 # --snip--
 ```
 
@@ -386,6 +385,13 @@ Also if we not sure that some of LSP or formatters are executable, we can check 
 1
 ```
 
+Also we might need to set up `bat` the enhanced version of `cat`:
+
+```zsh
+$ brew install bat
+```
+
+> Out of the box `bat` supports couple color schemes and we can set one of them as a default theme by adding the environment valuable `BAT_THEME` to the `.zshrc`:
 ## Sources list
 
 - [ohmyz.sh](https://ohmyz.sh/)
