@@ -1,10 +1,12 @@
 ---
+authors:
+  - Anton Petrov
+status: Note
 tags:
- - html
- - frontend
- - cource
+  - html
+  - frontend
+  - cource
 ---
-
 ## Список источников
 
 - [Ссылка на курс web.dev](https://web.dev/learn/html/)
