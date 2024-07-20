@@ -3,9 +3,8 @@ authors:
   - Anton Petrov
 status: Note
 tags:
-  - tools
-  - techwriting
+  - git
 ---
 ## Список источников
 
-1. https://antora.org/
+- [Wilfred/difftastic (github.com)](https://github.com/Wilfred/difftastic)
