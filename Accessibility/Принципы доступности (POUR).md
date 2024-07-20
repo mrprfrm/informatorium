@@ -1,3 +1,10 @@
+---
+authors:
+  - Anton Petrov
+status: Draft
+tags:
+  - accessibility
+---
 Согласно принципам доступности, интерфейс веб приложения должен быть **воспринимаемым (Perceivable)**, **удобным (Operable)**, **понятным (Understandable)** и **надёжным (Robust)**.
 
 ## Perceivable
