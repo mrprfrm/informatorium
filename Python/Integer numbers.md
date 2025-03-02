@@ -98,7 +98,6 @@ For these cases, Python provides specific methods, which can also be implemented
 class CustomInteger:
     def __rmul__(self, other):
         # Implement the multiplication operation with the right operand
-        return other * self._value
 ```
 
 > These methods handle reflected or swapped operands only when the left operand does not support the operation.
