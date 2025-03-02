@@ -1,7 +1,7 @@
 ---
 authors:
   - Anton Petrov
-status: draft
+status: article
 tags:
   - python
   - numbers
@@ -224,7 +224,7 @@ abs(-481)  # returns 481
 It relies on the `__abs__()` method, which can be implemented in custom types.
 
 ```python
-class CustomInteger::
+class CustomInteger:
     def __abs__(self):
         # Implement the absolute value operation
 ```
@@ -241,7 +241,7 @@ pow(10, 2, 3)  # returns 1
 
 > Note that `pow(10, 2)` is equivalent to `10 ** 2`, but `pow(10, 2, 3)` is more efficient than `10 ** 2 % 3`.
 
-The function also relies on the appropriate `__pow__()` method. The method should be defined to accept an optional third argument if the ternary version of the `pow()` function is to be supported.
+The function also relies on the appropriate `__pow__()` method. To support the ternary version of `pow()`, the method should be defined to accept an optional third argument.
 
 ```python
 class CustomInteger:
@@ -265,7 +265,7 @@ Now, let's attempt the same operation using the `**` operator instead of `pow()`
 38 ** -1 % 97  # returns 0.02631578947368421
 ```
 
-> The result is quite unexpected. It happens because `38 ** -1` performs reciprocal division before the modular inversion.
+> The result is quite unexpected. This happens because `38 ** -1` performs reciprocal division before the modular inversion.
 
 ### Modulo division
 
