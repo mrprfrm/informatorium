@@ -6,31 +6,32 @@ tags:
   - python
   - numbers
 ---
-Numbers and operations with them are the basis of any programming language. Python is no exception. Python supports a wide range of numeric types, including integers, floating-point numbers, and complex numbers. In this note, we will consider the basic operations with integer numbers, as well as some of the features of working with them. 
+
+Numbers and operations with them are the basis of any programming language. Python is no exception. Python supports a wide range of numeric types, including integers, floating-point numbers, and complex numbers. In this note, we will consider the basic operations with integer numbers, as well as some of the features of working with them.
 
 ## Integer numbers basics
 
-In python integers are represented by the `int` type. It supports all the basic arithmetic operations between basic numeric types, but also can participate in operations between some other non-numeric types in Python. Numbers of type `int` are represented by any integer literal.
+In Python, integers are represented by the `int` type. It supports all the basic arithmetic operations between numeric types but can also participate in operations with certain non-numeric types. Numbers of type `int` are represented by any integer literal[^1].
 
-First, let's take a look to a basic arithmetic operations with integers in Python. 
+First, let's take a look at basic arithmetic operations with integers in Python.
 
-```Python
+```python
 # Expression which contains basic arithmetic operations
-2 + 2 * 6 / 3 - 4 # returns 2.0
+2 + 2 * 6 / 3 - 4  # returns 2.0
 ```
 
-> It's important to note that the division operation (`/`) between two integers returns a floating-point number. If we need to get an integer result, we can use the floor devision operator (`//`). 
+> It's important to note that the division operation (`/`) between two integers returns a floating-point number. If we need an integer result, we can use the floor division operator (`//`).
 
-Arithmetic operations order in python is following the standard mathematical rules. And for those cases when the standard order is not suitable for particular needs we can change it by using parentheses. 
+The order of arithmetic operations in Python follows standard mathematical rules. If the default precedence is not suitable, parentheses can be used to alter the order of evaluation.
 
-```Python
+```python
 # Expression with a specific order of operations
-(2 + 2) * 6 / (3 - 4) # returns -24.0 
+(2 + 2) * 6 / (3 - 4)  # returns -24.0
 ```
 
-As everithing in Python is an object, each object, which supporting basic arithmetic operators, should implement the appropriate methods. `int` is not an exception. Now let's take a closer look to these methods in a custom class implementation. 
+Since everything in Python is an object, each object that supports arithmetic operators must implement the appropriate methods. `int` is no exception. Below is an example of these methods in a custom class.
 
-```Python 
+```python
 class CustomInteger:
     def __add__(self, other):
         # Implement the addition operation
@@ -45,35 +46,35 @@ class CustomInteger:
         # Implement the regular division operation
 ```
 
-Next, let's dive into the remaining operations supported by `int` type: floor division (`//`), modulo operation (`%`) and power operation (`**`).
+Next, let's explore the remaining operations supported by the `int` type: floor division (`//`), modulo operation (`%`), and exponentiation (`**`).
 
 ```python
 # Floor division returns the integer part of the division
-17 // 3  # returns 5 
+17 // 3  # returns 5
 
 # Modulo operation returns the remainder of the division
-17 % 3 # returns 2 
+17 % 3  # returns 2
 
-# Sqaure of 5 expression
-5 ** 2 # returns 25 
+# Square of 5 expression
+5 ** 2  # returns 25
 
-# 2 in power of 7 expression
-2 ** 7 # returns 128 
+# 2 raised to the power of 7
+2 ** 7  # returns 128
 
 # Square root of 16
-16 ** 0.5 # returns 4.0  
+16 ** 0.5  # returns 4.0
 ```
 
-Just as basic arithmetic operations, the operations above are implemented by the appropriate methods in the `int` class. Now, let's pay attention to these methods in a custom class implementation as well. 
+Just like basic arithmetic operations, the above operations are implemented through specific methods in the int class. Here’s how they can be defined in a custom class.
 
-```Python 
+```Python
 class CustomInteger:
     def __floordiv__(self, other):
-        # Implement the floor division operation 
+        # Implement the floor division operation
         return self._value // other
 
     def __mod__(self, other):
-        # Implement the modulo operation 
+        # Implement the modulo operation
         return self._value % other
 
     def __pow__(self, other):
@@ -81,205 +82,220 @@ class CustomInteger:
         return self._value ** other
 ```
 
-Also `int` in Python supports an operations between some non-integer types. 
+Python also supports operations between integers and some non-integer types.
 
-```Python
-"repeadme" * 5 
-# returns repeadmerepeadmerepeadmerepeadmerepeadme
+```python
+"repeatme" * 5
+# returns 'repeatmerepeatmerepeatmerepeatmerepeatme'
+
 (1, 2, 3, 4, 5) * 3
 # returns (1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5)
 ```
 
-For these particular examples Python also provides the appropriate methods. They are different from the methods for basic arithmetic operations, but still can be implemented in a custom class. 
+For these cases, Python provides specific methods, which can also be implemented in a custom class.
 
-```Python
+```python
 class CustomInteger:
     def __rmul__(self, other):
-        # Implement the multiplication operation with the right operand 
+        # Implement the multiplication operation with the right operand
         return other * self._value
 ```
 
-> The methods like this are implemented for **reflected** or **swapped** operands. They are used when the left operand does not support the corresponding operation. 
+> These methods handle reflected or swapped operands only when the left operand does not support the operation.
 
-## Numbers types casting
+## Number types casting
 
-In Python, when arithmetic operations are performed between numbers with different numeric types, these numbers are casting to the common type following the rules:
+In Python, when arithmetic operations involve different numeric types, type conversion occurs according to the following rules:
 
-- If one of the operands is a complex number, the second will be cast to a complex number; 
-- If one of the operands is a floating-point number, the second will be cast to a floating-point number; 
-- If any other cases both operands are integers and no casting required.
+- If one operand is complex, the result is complex.
+- If one operand is floating-point, the result is floating-point.
+- Otherwise, both operands remain integers.
 
-> It's important to note that the rules above works only for those operators which description uses the phrase "the numeric arguments are converted to a common type".
+> These rules apply only to operations whose documentation explicitly states that "the numeric arguments are converted to a common type."
 
-The types casting during arithmetic operations can be considered as **implicit types casting**, which means that the casting happens automatically without any additional operations in code. **Explicit types casting** requires the explicit calls of appropriate methods or functions to convert one type to another. 
-
-The explicit casting to integer in Python can be done using the `int()` function. This function can convert any appropriate type to an integer, the following type should implement the `__int__` method.
-
-```Python
-class CustomInteger:
-    def __int__(self):
-        # Cast the custom type to integer, should return integer value
-```
-
-> `__int__` method is required for custom type custing to `int`. It can contain any logic, but always should return integer value, otherwise the `TypeError` will be raised. 
-
-Python has couple built-in types that can be casted to integer. For instance
-
-```Python
-# The proper integer literal
-int(314e-2) # returns 3
-
-# The string contains proper integer literal
-int("4815") # returns 123
-
-# The floating-point number
-int(12.7) # returns 12
-
-# The boolean value
-int(True) # returns 1
-```
-
-> During the casting to integer, the floating-point numbers are truncated to the integer part.
-
-Also `int` function can take one optional arguments: `base`, which allows to set the base of the number during the casting. 
+**Implicit type casting** happens automatically, while **explicit type casting** requires calling methods or functions. The `int()` function can be used to convert appropriate types to integers. A custom type must implement the `__int__()` method.
 
 ```python
-int("A5", base=16) # returns 165
-int("0xa", base=0) # returns  10
+class CustomInteger:
+    def __int__(self):
+        # Cast the custom type to an integer, must return an integer value
 ```
 
-> `base` equal to `0` means that the base will be determined by the prefix of the string: `0b` for binary, `0o` for octal, `0x` for hexadecimal, and the default base is `10`.
+> The `__int__` method is required for casting custom types to `int`. If it does not return an integer, a `TypeError` is raised.
 
-And of cource, Python supports casting to integer for `bytes` and `bytearray` types, using method `from_bytes`. 
+Python provides built-in types that can be converted to `int`:
 
-```Python
-int.from_bytes(b'\x00\x10', byteorder='big') # returns 16
-int.from_bytes(b'\x00\x10', byteorder='little') # returns 4096
+```python
+# The proper integer literal
+int(314e-2)  # returns 3
+
+# The string containing a proper integer literal
+int("4815")  # returns 4815
+
+# The floating-point number
+int(12.7)  # returns 12
+
+# The boolean value
+int(True)  # returns 1
 ```
 
-`byteorder` argument is responsible for the byte order of the number: `big` — for most significant byte first, `little` — for least significant byte first. 
+> During conversion to an integer, floating-point numbers are truncated, not rounded.
+
+The `int()` function also supports an optional `base` argument.
+
+```python
+int("A5", base=16)  # returns 165
+int("0xa", base=0)  # returns 10
+```
+
+> Setting `base=0` enables automatic detection of the numeric base using common prefixes: `0b` for binary, `0o` for octal, and `0x` for hexadecimal. The default base is 10.
+
+Python also supports integer conversion from `bytes` and `bytearray` using `from_bytes`.
+
+```python
+int.from_bytes(b'\x00\x10', byteorder='big')  # returns 16
+int.from_bytes(b'\x00\x10', byteorder='little')  # returns 4096
+```
 
 ## Logical operations with integers
 
-Python supports logical operations with integer numbers. The numbers actually may have different types and result of these operations might be combined into a logical expressions using logical operators: `and`, `or`, `not`.
+Python supports logical operations on integers. These can be combined into logical expressions using and, or, and not.
 
-```Python
+```python
 24 > 11.5 >= 11.5 or 3.14 == 3 != 4.0 and 12 < 24.75 <= 31.4
 # returns True
 ```
 
-> Let's note that not all numbers types support logical operations. For instance, complex numbers might be compared only by module, which is quite logical, considering the nature of imaginary unit.
+> Complex numbers cannot be directly compared due to their mathematical nature.
 
-For all these operations Python provides the appropriate methods. Any type implementing these methods can be used in logical expressions. 
+Python provides special methods for logical comparisons. Any type implementing these methods can be used in logical expressions.
 
-```Python
+```python
 class CustomInteger:
     def __lt__(self, other):
-        # Implement the less than operation
+        # Implement less than
 
     def __le__(self, other):
-        # Implement the less than or equal operation
+        # Implement less than or equal
 
     def __eq__(self, other):
-        # Implement the equal operation
+        # Implement equal
 
     def __ne__(self, other):
-        # Implement the not equal operation
+        # Implement not equal
 
     def __gt__(self, other):
-        # Implement the greater than operation
+        # Implement greater than
 
     def __ge__(self, other):
-        # Implement the greater than or equal operation
+        # Implement greater than or equal
 ```
 
-Also, Python supports comparison between instances by their references using operators `is` and `is not`. 
+Python also supports instance comparison using the `is` and `is not` operators. These check whether two references point to the same object in memory.
 
-```Python
-8 is 8 # returns True
-8 is not 8.0 # returns True
+```python
+8 is 8  # returns True
+8 is not 8.0  # returns True
 ```
 
-> In this case the comparison is done by the references of the objects. The comparison like this is fair only for numbers of the same type and usually is more performance efficient.
+> This type of comparison is only valid for objects of the same type and is generally more efficient than value-based comparisons.
 
-Python also allows `int` type to participate in logical operations directly. In this case, the integer is casted to the `bool` type. 
+Additionally, Python allows integers to be used directly in logical operations by implicitly casting them to the `bool` type.
 
-```Python
-4 and True # returns True
-0 or False # returns False
+```python
+4 and True  # returns True
+0 or False  # returns False
 ```
 
 > Note that there is no `__not__()` method for object instances; only the interpreter core defines this operation. The result is affected by the `__bool__()` and `__len__()` methods.
 
 ## Functions for working with integers
 
-Python provides a set of built-in functions for working with numbers types. Some of them are just a more performant alternative to operators, others provide d unique functionality unavailable with operators.
+Python provides built-in functions to work with integers. Some serve as optimized operator alternatives, while others provide unique capabilities.
 
 ### Absolute value
 
-The `abs()` function returns the absolute value of a number. Let's have an example. 
-
-```Python
-abs(-481) # returns 481
-```
-
-The `abs` function can be used with any type, which implements the `__abs__` method. 
+The `abs()` function returns the absolute value of a number.
 
 ```python
-class CustomComplex:
-	def __init__(self, rel, img):
-		self._rel = rel
-		self._img = img
-	
-	def __abs__(self):
-		return (self._rel ** 2 + self._img ** 2) ** 0.5
+abs(-481)  # returns 481
+```
+
+It relies on the `__abs__()` method, which can be implemented in custom types.
+
+```python
+class CustomInteger::
+    def __abs__(self):
+        # Implement the absolute value operation
 ```
 
 ### Power
 
-The `pow()` function returns the value of the first argument raised to the power of the second argument. It also can take the third optional argument `mod`, which can be used to calculate the modulo of the result. 
+The `pow()` function returns the value of the first argument raised to the power of the second argument. It also accepts an optional third argument, `mod`, which applies a modulo operation to the result.
 
-```Python
-pow(10, 2) # returns 100
-pow(10, -2) # returns 0.01
-pow(10, 2, 3) # returns 1
+```python
+pow(10, 2)  # returns 100
+pow(10, -2)  # returns 0.01
+pow(10, 2, 3)  # returns 1
 ```
 
-> Note that `pow(10, 2)` is equivalent to `10 ** 2` but `pow(10, 2, 3)` is more performant than `10 ** 2 % 3`. 
+> Note that `pow(10, 2)` is equivalent to `10 ** 2`, but `pow(10, 2, 3)` is more efficient than `10 ** 2 % 3`.
 
-There is also a cases which simply can not be resolved with `**` operator. For instance let's take a closer look to modular inversion operation. 
+The function also relies on the appropriate `__pow__()` method. The method should be defined to accept an optional third argument if the ternary version of the `pow()` function is to be supported.
 
-```Python
-# Let's find the inverse number of 38 by modulo 97
+```python
+class CustomInteger:
+    def __pow__(self, other, mod=None):
+        # Implement the power operation
+```
+
+There are also cases that cannot be handled by the `**` operator alone. One such case is modular inversion[^2].
+
+```python
+# Finding the modular inverse of 38 by modulo 97
 pow(38, -1, mod=97)  # returns 23
 
-# Now, let's check if 23 actually is the inverse number
-23 * 38 % 97 == 1 # returns True
+# Verifying that 23 is the correct modular inverse
+23 * 38 % 97 == 1  # returns True
 ```
 
-Now, let's try the same with operators instead of function. 
+Now, let's attempt the same operation using the `**` operator instead of `pow()`.
 
-```Python
-38 ** -1 % 97 # returns 0.02631578947368421
+```python
+38 ** -1 % 97  # returns 0.02631578947368421
 ```
 
-The result is different and is not satisfying expectations. The reason is that `38 ** -1` performs the reciprocal devision before the modular inversion. 
+> The result is quite unexpected. It happens because `38 ** -1` performs reciprocal division before the modular inversion.
 
-### Modulo devision
+### Modulo division
 
-The `divmod()` function returns the tuple of two values: the result of the floor division and the remainder of the division. It's perforct for greatest common divisor calculation. 
+The `divmod()` function returns a tuple containing both the quotient and the remainder of a division. It is particularly useful for algorithms involving the greatest common divisor (GCD)[^3] or positional number systems.
 
-```Python
-divmod(123, 60) # returns (2, 5)
+```python
+divmod(123, 60)  # returns (2, 3)
 ```
 
-> We can rich the same result using the appropriate operators: `quotient, remainder = a // b, a % b`, but `divmod` is not only more readable but also more performant.
+> The same result can be obtained using `quotient, remainder = a // b, a % b`, but `divmod()` is both more readable and more performant.
 
-## Sources
+The `__divmod__()` method can be implemented in custom types to support the `divmod()` function.
+
+```python
+class CustomInteger:
+    def __divmod__(self, other):
+        # Implement the floor division and modulo operations simultaneously
+```
+
+## References
 
 - [An Informal Introduction to Python (python.org)](https://docs.python.org/3/tutorial/introduction.html)
 - [Built-in Types (python.org)](https://docs.python.org/3/library/stdtypes.html)
-- [Built-in Functions (python.org)](https://docs.python.org/3/library/functions.html#built-in-functions)
-- [Lexical analysis (python.org)](https://docs.python.org/3/reference/lexical_analysis.html)
+- [Built-in Functions (python.org)](https://docs.python.org/3/library/functions.html)
+- [Lexical Analysis (python.org)](https://docs.python.org/3/reference/lexical_analysis.html)
 - [Expressions (python.org)](https://docs.python.org/3/reference/expressions.html)
 - [Numbers in Python (realpython.com)](https://realpython.com/python-numbers)
+
+[^1]: An integer literal is a number, a letter, or a combination of letters and numbers that correspond to a specific numeral system, as well as the \_ symbol in number notation. For example: 1, 24, 0b01101, 0xC5, 10_000_000, and so on.
+
+[^2]: A modular inverse of a number `a` modulo `m` is a number `x` such that `(x * a) % m == 1`, where `m` is the modulus. The Extended Euclidean Algorithm describes how to compute the modular inverse. Numbers with this property are essential in cryptography, particularly in algorithms like the Diffie-Hellman key exchange.
+
+[^3]: The greatest common divisor (GCD) is the largest number that evenly divides two or more numbers without leaving a remainder. The Euclidean Algorithm is a widely used method for computing the GCD efficiently. This algorithm plays a crucial role in cryptography, including in the RSA encryption algorithm.
