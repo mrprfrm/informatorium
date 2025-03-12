@@ -24,23 +24,25 @@ Since the result array should contain only unique values, we can store all eleme
 > We can be sure that the values added to the result are unique because of the `set` structure.
 
 ```python
-def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
-    res = []
-    memo = set(nums1)
-    for num in nums2:
-        if num in memo:
-            res.append(num)
-            memo.remove(num)
-    return res
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        res = []
+        memo = set(nums1)
+        for num in nums2:
+            if num in memo:
+                res.append(num)
+                memo.remove(num)
+        return res
 ```
 
-## Set Intersection
+## Set Intersection Solution
 
 According to the problem statement, we can simply use Python's built-in `set` structure and its intersection operator.
 
 ```python
-def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
-    return list(set(nums1) & set(nums2))
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return list(set(nums1) & set(nums2))
 ```
 
 ## References
