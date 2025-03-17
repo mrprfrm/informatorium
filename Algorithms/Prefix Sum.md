@@ -1,7 +1,7 @@
 ---
 authors:
   - Anton Petrov
-status: draft
+status: note
 tags:
   - prefixsum
 ---
