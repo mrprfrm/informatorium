@@ -170,4 +170,3 @@ def get_zero_sum_subarrays(nums: List[int]) -> int:
 The Prefix Sum concept has many variations and can be adapted to different problems. It is not limited to zero-sum subarrays—we can also find subarrays with a sum equal to `k` or compute other operations like products.
 
 A key requirement for its efficiency is that the original array remains immutable. If the array is modified, previously computed prefix sums become outdated, requiring recalculations for correctness. This negates the benefit of constant-time range queries and leads to linear time complexity for updates.
-
