@@ -29,11 +29,13 @@ RESTful APIs are based on the standard HTTP protocol, but in a RESTful context, 
 - `HEAD`: Returns headers only.
 - `OPTIONS`: Returns available methods for a resource.
 
-Since REST defines methods as operations on resources, some methods influence resources more than others. Operations that produce the same result regardless of the number of times they are called are termed **idempotent**.
+> HTTP supports several other methods, but the list above includes the ones most commonly used in REST architectures.
 
 ## Idempotence
 
-In other words, **idempotence** is a property of an operation that can be applied multiple times without changing the result beyond the initial application. In RESTful APIs, properly implemented `GET`, `PUT`, and `DELETE` methods are idempotent, whereas `POST` and `PATCH` are not.
+REST is closely tied to HTTP methods, each of which has a distinct effect on system state. Some methods modify the system state, while others leave it intact. This distinction defines **idempotence**.
+
+**Idempotence** is a property of an operation that ensures repeated executions produce the same final system state as a single execution, regardless of how many times it is performed. Now, let's examine how idempotence applies to different HTTP methods:
 
 - `GET`: Retrieves data without any changes, making it **naturally idempotent**.
 - `POST`: Creates a new resource with each call, producing different results each time, so it **is not idempotent**.
@@ -43,13 +45,11 @@ In other words, **idempotence** is a property of an operation that can be applie
 - `HEAD`: Behaves like `GET` but returns only headers, making it **idempotent**.
 - `OPTIONS`: Returns available methods for a resource, making it **idempotent**.
 
-It is important to note that idempotence is strictly related to system state rather than call results. The system state should remain unchanged with multiple calls, even if the response varies.
-
-A proper implementation of RESTful methods should be predictable, returning responses with an expected structure and appropriate status codes. Let’s explore common HTTP status codes encountered in RESTful APIs.
+> It's important to note that idempotence is a strict and non-derivable property. It defines the correct implementation of specific methods, determining which can alter the system state and which cannot.
 
 ## HTTP Status Codes
 
-HTTP status codes are part of the response and describe the request status—whether it was successful or failed. Status codes are divided into five categories:
+A properly designed RESTful API ensures predictability by returning responses with a consistent structure and appropriate status codes. These codes indicate the status of a request, helping clients understand whether an operation was successful or encountered an issue. Status codes are divided into five categories:
 
 - `1xx`: Informational - Request received, continuing process.
 - `2xx`: Success - The action was successfully received, understood, and accepted.
@@ -57,7 +57,7 @@ HTTP status codes are part of the response and describe the request status—whe
 - `4xx`: Client Error - The request contains bad syntax or cannot be fulfilled.
 - `5xx`: Server Error - The server failed to fulfill a valid request.
 
-Common status codes in RESTful APIs include:
+Common status codes in RESTful APIs:
 
 - `200 OK`: The request was successful.
 - `201 Created`: The request was successful, and a new resource was created.
@@ -70,11 +70,13 @@ Common status codes in RESTful APIs include:
 - `409 Conflict`: The request could not be completed due to a conflict with the current state of the resource.
 - `500 Internal Server Error`: The server encountered an unexpected condition that prevented it from fulfilling the request.
 
-Besides the status code, the system state is often contained in the response body, which the client uses to react appropriately. Sometimes, the state is described implicitly, such as when the client deduces state from the number of fields in the response body. In other cases, the state is explicitly described using boolean fields like `isClosed` or `isAvailable`.
-
-Instead of hardcoding URLs for actions based on system state, REST offers a mechanism to return available actions dynamically within the response. This approach is known as **HATEOAS**.
+> The list above includes the most common HTTP status codes in RESTful APIs, but it does not restrict the use of other valid codes. Status codes serve as a way to determine the appropriate response behavior before processing the request body.
 
 ## HATEOAS
+
+Status code handlers are just the first step in response processing and are often insufficient for handling domain-specific states. Sometimes, state is inferred from response conditions, while in other cases, it is explicitly represented by boolean fields like `isClosed` or `isAvailable`.
+
+Rather than hardcoding URLs for actions based on system state, REST employs **HATEOAS**, which dynamically provides available actions within the response.
 
 **HATEOAS (Hypermedia as the Engine of Application State)** is a REST architectural constraint that allows the client to interact with the server using links contained in a response rather than hardcoding URLs. This enables the server to modify the API structure without breaking the client.
 
@@ -119,9 +121,9 @@ Now, only one action is available—depositing money. The available actions dyna
 
 A client does not need to understand every media type and communication mechanism offered by the server. The ability to interpret new media types can be acquired at runtime through `code-on-demand` provided by the server.
 
-Next, let’s explore the security aspects of public APIs, as most RESTful APIs are public and must be protected from malicious requests.
-
 ## References
 
 - [REST (wikipedia.org)](https://en.wikipedia.org/wiki/REST)
 - [HATEOAS (wikipedia.org](https://en.wikipedia.org/wiki/HATEOAS)
+- [HTTP request methods (developer.mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods)
+- [HTTP response status codes (developer.mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status)
