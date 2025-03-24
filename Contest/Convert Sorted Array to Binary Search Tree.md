@@ -1,8 +1,10 @@
 ---
+authors:
+  - Anton Petrov
+status: draft
 tags:
- - contest
- - easy
- - dfs
+  - easy
+  - dfs
 ---
 
 ![[height_balanced_binary_search_tree.png]]
@@ -10,8 +12,6 @@ tags:
 Дан список целых чисел, отсортированный по возрастанию, необходимо преобразовать его в двоичное дерево поиска, [[Деревья#^7c5a73|сбалансированное по высоте]].
 
 ## Решение
-
-
 
 ```Python
 @dataclass
@@ -38,3 +38,4 @@ def sorted_array_to_bst(self, nums: List[int]) -> Optional[TreeNode]:
 ## Список источников
 
 - [108. Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/)
+

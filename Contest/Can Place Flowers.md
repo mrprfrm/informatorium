@@ -1,7 +1,7 @@
 ---
 authors:
   - Anton Petrov
-status: note
+status: draft
 tags:
   - easy
   - pointers
