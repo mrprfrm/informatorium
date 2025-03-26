@@ -4,8 +4,10 @@ authors:
 status: note
 tags:
   - easy
-  - memo
+  - hashmap
 ---
+
+![Intersection of Two Arrays](intersection_of_two_sets.png)
 
 Given two integer arrays `nums1` and `nums2`, return an array of their intersection[^1]. Each element in the result must be unique and you may return the result in **any order**.
 
@@ -35,6 +37,8 @@ class Solution:
         return res
 ```
 
+The solution has `O(M + N)` time complexity, where `M` and `N` are the sizes of the input arrays, and space complexity is `O(N)`. Here, we loop over one of the arrays and use an additional set to store the values from the other array. The solution is pretty solid in a common-sense way, but Python has a native `set` data type that supports all the necessary operations, which might be extremely useful in particular cases—so let's dive into that.
+
 ## Set Intersection Solution
 
 According to the problem statement, we can simply use Python's built-in `set` structure and its intersection operator.
@@ -44,6 +48,10 @@ class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
         return list(set(nums1) & set(nums2))
 ```
+
+We might say that now the solution has only `O(1)` time and space complexity, but that's not actually true. Under the hood, casting a `list` to a `set` and vice versa requires looping through the entire collection, and its size has a direct effect on both the runtime and memory usage.
+
+So, the actual time and space complexity is about `O(M + N)`. The good news is that these operations are implemented in highly optimized C code within CPython, making them significantly faster than equivalent logic written purely in Python. 
 
 ## References
 
