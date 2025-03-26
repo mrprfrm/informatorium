@@ -21,42 +21,43 @@ According to the problem statement, we need to modify the original array `nums1`
 
 Even with one additional array, we can't use a nested loop because such a solution would be inefficient. Instead, we loop through both lists simultaneously using appropriate pointers.
 
-Now, the main question is: how are we going to increment the pointer values? There is no point in incrementing both pointers on each iteration, as the values in both arrays might be shuffled relative to each other. Instead, we search for the smallest value in the current iteration and increment only the pointer associated with the smallest value.
+Now, the main question is: how are we going to increment the pointer values? There is no point in incrementing both pointers on each iteration, as the values in both arrays might be shuffled relative to each other. Instead, we search for the smallest value in the current iteration and increment only the pointer associated with that smallest value.
 
 ```python
-m, nums1 = 3, [1, 2, 6, 0, 0, 0]
-n, nums2 = 3, [2, 2, 3]
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        # If n is 0, there is no point in continuing
+        # The answer is the original nums1 array since nums2 has no elements to modify it
+        if n < 1:
+            return
 
-# If n is 0, there is no point in continuing
-# The answer is the original nums1 array since nums2 has no elements to modify it
-if n < 1:
-    return
+        nums3 = []
+        i = j = 0
+        while m > 0 and i < m and j < n:
+            if nums1[i] < nums2[j]:
+                nums3.append(nums1[i])
+                i += 1
+            else:
+                nums3.append(nums2[j])
+                j += 1
 
-nums3 = []
-i = j = 0
-while m > 0 and i < m and j < n:
-    if nums1[i] < nums2[j]:
-        nums3.append(nums1[i])
-        i += 1
-    else:
-        nums3.append(nums2[j])
-        j += 1
+        # Since we can't determine which array has fewer elements,
+        # we need to fill nums3 with the remaining values
 
-# Since we can't determine which array has fewer elements,
-# we need to fill nums3 with the remaining values
+        while j < n:
+            nums3.append(nums2[j])
+            j += 1
 
-while j < n:
-    nums3.append(nums2[j])
-    j += 1
+        while i < m:
+            nums3.append(nums1[i])
+            i += 1
 
-while i < m:
-    nums3.append(nums1[i])
-    i += 1
-
-# According to the condition, we need to modify the original nums1 array
-for i, num in enumerate(nums3):
-    nums1[i] = num  # Fixed typo: "nu" -> "num"
+        # According to the condition, we need to modify the original nums1 array
+        for i, num in enumerate(nums3):
+            nums1[i] = num  # Fixed typo: "nu" -> "num"
 ```
+
+This gives us a solution with `O(m + n)` time and `O(m + n)` space complexity. The approach is functional, but it definitely contains redundant loops, as well as unnecessary space usage. Now let's explore a more optimized implementation.
 
 ## Optimized Solution
 
@@ -70,10 +71,8 @@ Since the insignificant part doesn’t contain meaningful data, instead of creat
 Now, we search for the largest value on each iteration, place it at the end according to the current position in `nums1`, and decrement the pointer associated with that value.
 
 ```python
-
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-
         # Pointer for elements in the significant part of nums1
         i = m - 1
         # Pointer for elements in nums2
@@ -92,6 +91,8 @@ class Solution:
                 j -= 1
             k -= 1
 ```
+
+Now we have a much more efficient approach. It maintains the same `O(m + n)` time complexity but uses only one loop for the entire process and `O(1)` space complexity, since no additional space is used and all operations are performed directly on the original array.
 
 ## References
 
