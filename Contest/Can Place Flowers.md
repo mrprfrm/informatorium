@@ -38,11 +38,13 @@ class Solution:
         return False
 ```
 
+The solution has `O(n)` time and `O(1)` space complexity since we are modifying the input array. This is quite a solid solution, but it's strictly associated with the problem statement. It's absolutely fine, but before we name it as final, let's try to generalize the solution.
+
 ## Sliding Window Solution
 
-In fact, we are looking for subarrays with `k` empty positions (for this particular problem `k = 3`). Instead of directly checking the neighbor positions, we can set a window of `size <= k` and when we encounter a flower or reach the `k` size, we can increment the number of available positions for planting a new flower.
+In fact, we are looking for subarrays with `k` empty positions (for this particular problem `k = 3`). Instead of directly checking the neighbor positions, we can set a window of `size <= k`, and when we encounter a flower or reach size `k`, we can increment the number of available positions for planting a new flower.
 
-As we decided to use the sliding window technique, we need to consider the edge cases when the window is at the beginning or end of the flowerbed. To keep the logic common, we can add two extra empty positions at the beginning and end of the flowerbed.
+As we decided to use the sliding window technique, we need to consider the edge cases when the window is at the beginning or end of the flowerbed. To keep the logic uniform, we can add two extra empty positions at the beginning and end of the flowerbed.
 
 ```python
 class Solution:
@@ -80,6 +82,10 @@ class Solution:
         return False
 ```
 
+It gives us the same `O(n)` time complexity and `O(1)` space complexity. It doesn't have any performance advantages over the intuitive solution, but it has a more generalized logic structure and can be used in more complex problems.
+
+Here, we are still using a single loop over the original flowerbed array and modifying it during the loop, which might have potential side effects. Now let's dive into an even more efficient implementation.
+
 ## Optimized Solution
 
 Now, let's try counting the number of flowers we can plant in each gap between already planted flowers in the flowerbed. Let's consider an example:
@@ -111,7 +117,7 @@ The answer is wrong because we can plant 3 flowers in the flowerbed like this: `
 To make the solution work correctly, let's assume we have one extra empty position at the beginning and start counting from `1` instead of `0`. According to this, the total number of flowers we can plant in the gap is:
 
 $$
-len(gap) + 1) // 2
+(len(gap) + 1) // 2
 $$
 
 > It is important to note that this calculation only works if the gap starts at the beginning of the flowerbed and ends at the end of it.
@@ -145,7 +151,7 @@ Concluding, we have two cases where the calculation of flowers in gaps is differ
 - The entire flowerbed is empty: We need to add an extra empty position at the beginning.
 - The flowerbed has one or more gaps between planted flowers: We count the number of flowers that can be planted in each gap separately, without any extra space.
 
-Now let's implement the optimized solution, but instead of counting gaps' lengths, we will count flowers on each iteration and update the counter each time we encounter a flower.
+Now let's implement the optimized solution. Instead of counting gap lengths, we will count flowers on each iteration and update the counter each time we encounter a flower.
 
 ```python
 class Solution:
@@ -171,6 +177,8 @@ class Solution:
         # since the loop didn’t have enough iterations to do so.
         return res + count // 2 >= n
 ```
+
+This solution also has `O(n)` time and `O(1)` space complexity, but unlike previous ones, it keeps the original flowerbed array intact — meaning it has no unnecessary side effects.
 
 ## References
 
