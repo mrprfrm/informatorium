@@ -1,12 +1,14 @@
 ---
 authors:
   - Anton Petrov
-status: draft
+status: note
 tags:
   - easy
   - window
   - prefixsum
 ---
+
+![Maximum Average Subarray I](maximum_average_subarray_i.png)
 
 You are given an integer array `nums` consisting of `n` elements, and an integer `k`.
 
