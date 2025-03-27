@@ -1,12 +1,14 @@
 ---
 authors:
   - Anton Petrov
-status: draft
+status: note
 tags:
   - easy
   - pointers
   - window
 ---
+
+![Can Place Flowers](can_place_flowers.png)
 
 You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in **adjacent** plots.
 
