@@ -1,10 +1,11 @@
 ---
 authors:
   - Anton Petrov
-status: note
+status: draft
 tags:
   - easy
   - window
+  - prefixsum
 ---
 
 You are given an integer array `nums` consisting of `n` elements, and an integer `k`.
@@ -13,89 +14,81 @@ Find a contiguous subarray whose **length is equal to** `k` that has the maximum
 
 ## Intuitive Solution
 
-According to the problem statement, we need to find the subarray of `nums` with the maximum average sum of its elements. First, let's determine the beginning and ending indexes of such subarrays. Then, we will select the one with the largest sum, and dividing it by `k` will give us the final answer.
+According to the problem statement, we need to find the subarray of `nums` with the maximum average sum of its elements. First, let’s determine the beginning and ending indexes of such subarrays. Then, we will select the one with the largest sum, and dividing it by `k` will give us the final answer.
 
 ```python
 class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
-        i = j = 0
         # Instead of using a memo array, we are going to calculate the sum on each iteration
-        res = -float("inf")
-        while j < len(nums):
-            # If the current window size exceeds k,
-            # we need to shrink the window from the left side
-            if j - i + 1 > k:
-                i += 1
-
+        i = 0
+        summ = -float("inf")
+        for j, num in enumerate(nums):
+            # If the current window size equals k,
+            # evaluate the sum and move the window forward
             if j - i + 1 == k:
-                res = max(sum(nums[i: j + 1]), res)
+                summ = max(sum(nums[i: j + 1]), summ)
                 i += 1
-            j += 1
-
-        return res / k
+        return summ / k
 ```
 
-Unfortunately, the expression `sum(nums[i: j + 1])` is inefficient within a loop, as it has a time complexity of $O(n)$, resulting in an overall time complexity of $O(n * k)$.
+Unfortunately, the expression `sum(nums[i: j + 1])` is inefficient within a loop, as it has a time complexity of $O(n)$, resulting in an overall time complexity of $O(n \times k)$. The space complexity is also $O(n^2)$ due to repeated slicing of the array inside the loop.
 
 ```python
 class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
         # Precompute prefix sums
         n = len(nums)
-        memo = [0] * n
-        memo[0] = nums[0]
-        for i in range(1, n):
-            memo[i] = memo[i - 1] + nums[i]
+        prev = [0] * (n + 1)
+        for i, num in enumerate(nums):
+            prev[i + 1] = prev[i] + num
 
-        i = j = 0
-        res = -float("inf")
-        while j < n:
-            if j - i + 1 > k:
-                i += 1
-
+        i = 0
+        summ = -float("inf")
+        for j in range(1, n):
             if j - i + 1 == k:
-                prev = memo[i - 1] if i > 0 else 0
-                res = max(memo[j] - prev, res)
+                summ = max(prev[j] - prev[i], summ)
                 i += 1
-            j += 1
-
-        return res / k
+        return summ / k
 ```
+
+This improves the time complexity to $O(n)$, but the space complexity remains $O(n)$ due to the prefix sum array. Let’s explore more optimal approaches.
 
 ## Optimal Solution
 
-Let's take a closer look at the formula we are using to find the maximum sum of a subarray of size `k`. In fact, there is no need to shrink the window on each iteration. Instead, we can simply compute the difference between the sum at the current position `j` and the sum at position `j - k`. This allows us to avoid unnecessary pointer management.
+Let’s take a closer look at the formula used to find the maximum sum of a subarray of size `k`. Instead of manually managing window pointers on each iteration, we can directly compute the difference between the prefix sum at position `j` and the one at position `j - k`. This avoids unnecessary pointer management.
 
 ```python
 class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
         n = len(nums)
-        memo = [0] * n
-        memo[0] = nums[0]
-        for i in range(1, n):
-            memo[i] = memo[i - 1] + nums[i]
+        prev = [0] * (n + 1)
+        for i, num in enumerate(nums):
+            prev[i + 1] = prev[i] + num
 
-        # Currently, sliding window index management is not required
-        res = memo[k - 1]
+        # No need to manage window pointers explicitly
+        summ = prev[k]
         for j in range(k, n):
-            res = max(memo[j] - memo[j - k], res)
+            summ = max(prev[j + 1] - prev[j - k + 1], summ)
 
-        return res / k
+        return summ / k
 ```
 
-Now, let's take a closer look at the first loop. Instead of calculating prefix sums for the entire `nums` array, we can compute the sum of the first `k` elements. Then, in each iteration of the second loop, we dynamically update the sum for the current window position. This eliminates the need for a separate prefix sum array, reducing both space and time complexity.
+This keeps both time and space complexities at $O(n)$. However, the solution can still be optimized.
+
+Rather than building a full prefix sum array, we can track the sum of the first `k` elements and update it in place as the window moves. This removes the need for extra space.
 
 ```python
 class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
-        # Predefine part of the sums memo array
-        # The remaining one will be calculated on the fly
-        res = memo = sum(nums[:k])
+        # Initialize the sum with the first k elements
+        summ = prev = sum(nums[:k])
         for i in range(k, len(nums)):
-            memo += nums[i] - nums[i - k]
-            res = max(memo, res)
-        return res / k
+            prev += nums[i] - nums[i - k]
+            summ = max(prev, summ)
+        return summ / k
 ```
+
+This version achieves $O(n)$ time and $O(1)$ space complexity. Technically, `sum(nums[:k])` is $O(k)$, not $O(1)$, but this is a minor assumption — the impact is negligible and can be avoided with a simple loop if needed.
 
 ## References:
 
