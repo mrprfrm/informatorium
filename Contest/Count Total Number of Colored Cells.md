@@ -34,7 +34,7 @@ class Solution:
         return memo[-1]
 ```
 
-Now, let's optimize the solution. In fact, we don't need to store the entire array of colored cells—we can just keep track of the last computed result and update it at each step. Also, let's simplify the formula:
+Now, let's optimize the solution. In fact, we don't need to store the entire array of colored cells — we can just keep track of the last computed result and update it at each step. Also, let's simplify the formula:
 
 ```python
 class Solution:
@@ -47,7 +47,7 @@ class Solution:
         return count
 ```
 
-This gives us a solution with $O(n)$ time complexity and $O(1)$ space complexity, which is quite solid—but not the most efficient. If we carefully analyze the formula, we can see that it simplifies to:
+This gives us a solution with $O(n)$ time complexity and $O(1)$ space complexity, which is quite solid — but not the most efficient. If we carefully analyze the formula, we can see that it simplifies to:
 
 ```python
 class Solution:
