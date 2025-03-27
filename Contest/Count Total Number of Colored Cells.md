@@ -20,7 +20,7 @@ Return the number of **colored cells** at the end of `n` minutes.
 
 ## Intuitive Solution
 
-First, let's simulate the process of coloring the cells in the grid. We'll define an array that keeps track of the number of cells colored at each minute. At each step, we only need to color one new layer above the previous one. The new layer consists of `2 * (i + 1)` cells from two sides and `2 * (i - 1)` cells from the other two sides, where `i` is the current minute index.
+First, let's simulate the process of coloring the cells in the grid. We'll define an array that keeps track of the number of cells colored at each minute. At each step, we only need to color one new layer above the previous one. The new layer consists of `2 \times (i + 1)` cells from two sides and `2 \times (i - 1)` cells from the other two sides, where `i` is the current minute index.
 
 ```python
 class Solution:
@@ -47,9 +47,7 @@ class Solution:
         return count
 ```
 
-This gives us a solution with `O(n)` time complexity and `O(1)` space complexity, which is quite solid but not the most efficient. If we carefully analyze the formula, we can see that it simplifies to:
-
-Let's implement it:
+This gives us a solution with $O(n)$ time complexity and $O(1)$ space complexity, which is quite solid—but not the most efficient. If we carefully analyze the formula, we can see that it simplifies to:
 
 ```python
 class Solution:
@@ -57,7 +55,7 @@ class Solution:
         return 1 + 2 * n * (n - 1)
 ```
 
-This final version achieves `O(1)` time complexity while maintaining correctness.
+This final version achieves $O(1)$ time complexity while maintaining correctness.
 
 ## References
 
