@@ -1,7 +1,7 @@
 ---
 authors:
   - Anton Petrov
-status: article
+status: note
 tags:
   - python
   - numbers
