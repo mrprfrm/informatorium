@@ -110,5 +110,5 @@ ssh -T git@github.com
 
 ## References
 
-- [GitHub: Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-- [OpenSSH Manual](https://man.openbsd.org/ssh-keygen)
+- [Connecting to GitHub with SSH (github.com)](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+- [OpenSSH Manual (openbsd.org)](https://man.openbsd.org/ssh-keygen)
