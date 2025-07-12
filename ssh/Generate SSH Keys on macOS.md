@@ -16,7 +16,7 @@ Begin by generating a new SSH key using the `ed25519` algorithm, which offers st
 ssh-keygen -t ed25519 -C "email@example.com"
 ```
 
-By default, this creates the private key at `/Users/username/.ssh/id_ed25519`.
+By default, this creates the private key at `~/.ssh/id_ed25519`.
 
 > It is strongly recommended to set a passphrase when prompted during key generation to enhance the security of your private key.
 
