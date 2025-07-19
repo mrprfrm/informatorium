@@ -16,15 +16,16 @@ Let’s start by defining a base model that contains all the shared fields along
 
 ```python
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer
+from sqlalchemy.orm import Mapped, mapped_column
 
 Base = declarative_base()
 
 class Entity(Base):
     __tablename__ = "entities"
-    id = Column(Integer, primary_key=True)
-    entity_id = Column(Integer, nullable=False)
-    entity_type = Column(Integer, nullable=False)
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    entity_id: Mapped[int] = mapped_column(nullable=False)
+    entity_type: Mapped[int] = mapped_column(nullable=False)
 
     __mapper_args__ = {
         "polymorphic_on": entity_type,
@@ -50,15 +51,21 @@ class EntityType(enum.IntEnum):
 Now let’s create a child model that builds on the base entity. Here, we’ll add fields specific to this type and assign the correct polymorphic identity so SQLAlchemy knows how to distinguish it:
 
 ```python
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column
+
 class ClientEntity(Entity):
     __tablename__ = "client_entities"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
+
+    id: Mapped[int] = mapped_column(ForeignKey("entities.id"), primary_key=True)
+    name: Mapped[str] = mapped_column()
 
     __mapper_args__ = {
         "polymorphic_identity": EntityType.CLIENT,  # Client's entity type
     }
 ```
+
+> When using polymorphic loading, the id field in child models must act as both a primary key and a foreign key to the parent model. Failing to do so leads to incorrect or incomplete loading behavior.
 
 ## Field Aliasing
 
@@ -66,15 +73,17 @@ For those cases when we need to alias fields from the original model inside a ch
 
 ### Using `synonym`
 
-To rename a parent field in the child model without changing database structure, use SQLAlchemy's `synonym` mapping:
+To rename a parent field in the child model without changing the database structure, use SQLAlchemy's `synonym` mapping:
 
 ```python
 from sqlalchemy.orm import synonym
 
 class ClientEntity(Entity):
     __tablename__ = "client_entities"
-    id = Column(Integer, primary_key=True)
+
+    id: Mapped[int] = mapped_column(ForeignKey("entities.id"), primary_key=True)
     project_id = synonym('owner_id')
+
     __mapper_args__ = {
         "polymorphic_identity": 1,
     }
@@ -89,7 +98,9 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 class ClientEntity(Entity):
     __tablename__ = "client_entities"
-    id = Column(Integer, primary_key=True)
+
+    id: Mapped[int] = mapped_column(ForeignKey("entities.id"), primary_key=True)
+
     __mapper_args__ = {
         "polymorphic_identity": 1,
     }
@@ -110,7 +121,7 @@ class ClientEntity(Entity):
 When a new child record is created, SQLAlchemy automatically manages inserts into both the base and subclass tables. This behavior mimics PostgreSQL's handling of table inheritance.
 
 ```python
-ce = ClientEntity(client_id=1)
+ce = ClientEntity(project_id=1)
 session.add(ce)
 session.commit()
 ```
